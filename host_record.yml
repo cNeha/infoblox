@@ -2,12 +2,12 @@
 - name: Nios_Host_Record
   hosts: localhost
   connection: local
-    tasks:
+  tasks:
    - name: Create Nios Host_Record
      nios_host_record:
-      name: new_host.ansible.com
-      ipv4:
-      - address: 192.168.10.1
-      state: present
-      comment: test comment
-      provider: "{{ nios_provider }}"
+       name: new_host.ansible.com
+       ipv4:
+       - address: 192.168.10.1
+       state: present
+       comment: test comment
+       provider: "{{ nios_provider }}"
