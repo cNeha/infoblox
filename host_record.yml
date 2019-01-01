@@ -2,6 +2,7 @@
 - name: Nios_Host_Record
   hosts: localhost
   connection: local
+  include_vars: /vars/host.txt
   tasks:
   - name: Create Nios Host_Record
     nios_host_record:
