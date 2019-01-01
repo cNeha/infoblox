@@ -2,7 +2,10 @@
 - name: Nios_Host_Record
   hosts: localhost
   connection: local
-  vars_files: /vars/host.yaml
+  nios_provider:
+    host: 1.1.1.1
+    username: admin 
+    password: abc
   tasks:
   - name: Create Nios Host_Record
     nios_host_record:
