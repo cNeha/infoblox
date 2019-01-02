@@ -1,0 +1,12 @@
+---
+- name: Nios_Zone
+  hosts: localhost
+  connection: local
+  vars_files: /vars/host.yaml
+  tasks:
+   - name: Create Nios Zone
+     nios_zone:
+      name: ansible.com
+      state: present
+      comment: test comment
+      provider: "{{ nios_provider }}"
