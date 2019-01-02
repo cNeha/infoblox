@@ -1,0 +1,8 @@
+- name: Install Package
+  hosts: localhost
+  tasks:
+  - name: Install Package
+    yum:
+      name: "{{ package_name }}"
+      state: latest
+    register: package
