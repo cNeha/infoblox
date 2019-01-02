@@ -1,0 +1,13 @@
+---
+- name: Get Next Available IP
+  hosts: localhost
+  connection: local
+  vars_files: /vars/host.yaml
+  tasks:
+   - name: Get Next Available IP
+     set_fact:
+       ipaddr: "{{ lookup('nios_next_ip', '192.168.10.0/24', provider=nios_provider) }}"
+     register: result
+   - name: print result
+     set_fact: res="{{ result | list }}"
+   - debug: var=res
