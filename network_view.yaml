@@ -1,0 +1,11 @@
+---
+- name: info check
+  hosts: localhost
+  vars_files: /vars/host.yaml
+  tasks:
+  - name: configure a new network view
+    nios_network_view:
+      name: ansible
+      state: present
+      provider: "{{ nios_provider }}"
+    connection: local                   
