@@ -1,0 +1,12 @@
+---
+- name: Nios_Network
+  hosts: localhost
+  connection: local
+  vars_files: /vars/host.yaml
+  tasks:
+   - name: Create Nios Network
+     nios_network:
+       network: 192.168.10.0/24
+       state: present
+       comment: test comment
+       provider: "{{ nios_provider }}"
