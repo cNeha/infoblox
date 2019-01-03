@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - debug:
+        msg: play1
+- name: calling test package
+  import_playbook: test_package.yaml
+  tasks:  
+    - debug:
+      msg: "{{package}}"  
+       
