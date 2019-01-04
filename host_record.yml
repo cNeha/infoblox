@@ -12,3 +12,4 @@
       state: present
       comment: test comment
       provider: "{{ nios_provider }}"                                 
+    register: host_created
