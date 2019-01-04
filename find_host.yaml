@@ -7,3 +7,4 @@
     - name: search and get the host_record info
       set_fact:
         ipaddr: "{{ lookup('nios', 'record:host', filter={'name':'new_host.ansible.com'}, provider=nios_provider) }}"
+      register: host_found
