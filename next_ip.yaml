@@ -9,5 +9,5 @@
        ipaddr: "{{ lookup('nios_next_ip', '192.168.10.0/24', provider=nios_provider) }}"
      register: result
    - name: print result
-     set_fact: res="{{ result | list }}"
-   - debug: var=res
+     debug: 
+       msg: "{{ result.ansible_facts.ipaddr }}" 
