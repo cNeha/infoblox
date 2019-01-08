@@ -5,7 +5,7 @@
 - hosts: localhost
   gather_facts: no
   vars:
-    - netmask: 24
+    - netmask: 255.255.255.0
   tasks:
     - debug: 
         msg: "{{ result.ansible_facts.ipaddr }}" 
