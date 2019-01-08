@@ -22,7 +22,7 @@
           action: edit
           resource:
             options:
-              addr_mode: ["static", "Static"]
+              addr_mode: "static"
               ip_addr: "{{ result.ansible_facts.ipaddr }}"
               subnet_mask: "{{ netmask }}"
         validate_certs: no
