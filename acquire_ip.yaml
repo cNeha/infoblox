@@ -7,6 +7,8 @@
   vars:
     - netmask: 24
   tasks:
+    - debug: 
+        msg: "{{ result.ansible_facts.ipaddr }}" 
     - debug:
         var: miq_provision_id
     - debug:
