@@ -6,6 +6,8 @@
   gather_facts: no
   vars:
     - netmask: 255.255.255.0
+  roles:
+  - syncrou.manageiq-automate
   tasks:
     - debug: 
         msg: "{{ result.ansible_facts.ipaddr }}" 
@@ -30,4 +32,11 @@
           X-Auth-Token: "{{ manageiq.api_token }}"
         body_format: json
         status_code: 200
+   - name: "Save the job ID back into $evm.root"
+     manageiq_automate:
+      workspace: "{{ workspace }}"
+      set_attribute:
+        object: "root"
+        attribute: "ip_addr"
+        value:  "{{ ip_addr }}"
 
