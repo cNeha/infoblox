@@ -15,7 +15,7 @@
     nios_host_record:
       name: new_host.ansible.com
       ipv4:
-      - address: 192.168.10.1
+      - address: "{{ ip_addr }}"
       state: present
       comment: test comment
       provider: "{{ nios_provider }}"                                 
