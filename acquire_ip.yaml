@@ -1,25 +1,18 @@
 --- 
-- 
-  hosts: localhost
-- 
-  import_playbook: next_ip.yaml
-- 
-  gather_facts: false
+- hosts: localhost
+- import_playbook: next_ip.yaml
+- gather_facts: false
   hosts: localhost
   roles: 
     - syncrou.manageiq-automate
   tasks: 
-    - 
-      debug: 
+    - debug: 
         msg: "{{ result.ansible_facts.ipaddr }}"
-    - 
-      debug: 
+    - debug: 
         var: miq_provision_id
-    - 
-      debug: 
+    - debug: 
         var: miq_provision_request_id
-    - 
-      name: "update task with new IP and hostname information"
+    - name: "update task with new IP and hostname information"
       uri: 
         body: 
           action: edit
@@ -35,8 +28,7 @@
         status_code: 200
         url: "{{ manageiq.api_url }}/api/provision_requests/{{ miq_provision_request_id }}/request_tasks/{{ miq_provision_id }}"
         validate_certs: false
-    - 
-      manageiq_automate: ~
+    - manageiq_automate: 
       name: "Save the job ID back into $evm.root"
       set_attribute: 
         attribute: ip_addr
