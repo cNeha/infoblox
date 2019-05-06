@@ -30,11 +30,11 @@
         validate_certs: false
     - name: "Set Attributes"
       manageiq_automate: 
-        set_attribute: 
-          validate_certs: "false"
+        set_attribute:           
           attribute: ip_addr
           object: root
           value: "{{ ip_addr }}"
+        manageiq_validate_certs: false
         workspace: "{{ workspace }}"
   vars: 
     - netmask: "255.255.255.0"
