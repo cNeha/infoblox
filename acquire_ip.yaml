@@ -31,6 +31,7 @@
     - name: "Set Attributes"
       manageiq_automate: 
         set_attribute: 
+          validate_certs: "false"
           attribute: ip_addr
           object: root
           value: "{{ ip_addr }}"
