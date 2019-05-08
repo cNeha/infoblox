@@ -35,6 +35,6 @@
           value: "{{ ip_addr }}"
         workspace: "{{ workspace }}"
       register: ip_addr
-    - debug: msg="ip_addr: {{ ip_addr }}"
+    - debug: msg="ip_addr:{{ ip_addr }}"
   vars: 
     - netmask: "255.255.255.0"
