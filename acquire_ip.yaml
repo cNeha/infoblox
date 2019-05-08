@@ -28,6 +28,11 @@
         status_code: 200
         url: "{{ manageiq.api_url }}/api/provision_requests/{{ miq_provision_request_id }}/request_tasks/{{ miq_provision_id }}"
         validate_certs: false
+    - manageiq_connection:
+          url: "https://{{ manageiq.api_url }}"
+          username: 'admin'
+          password: "{{ password }}"
+          manageiq_validate_certs: false
     - name: "Set Attributes"
       manageiq_automate: 
         set_state_var: 
