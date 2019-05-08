@@ -34,5 +34,6 @@
           attribute: ip_addr
           value: "{{ ip_addr }}"
         workspace: "{{ workspace }}"
+        manageiq_validate_certs: false
   vars: 
     - netmask: "255.255.255.0"
