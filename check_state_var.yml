@@ -1,0 +1,20 @@
+---
+- name: Check a State Var exists
+  hosts: localhost
+  connection: local
+  vars:
+  - object: root
+
+  gather_facts: False
+  roles:
+  - syncrou.manageiq-automate
+
+  tasks:
+    - name: "Check a State Var exists"
+      manageiq_automate:
+        workspace: "{{ workspace }}"
+        state_var_exists:
+          attribute: "task_id"
+      register: task_id
+
+    - debug: msg="task_id:{{ task_id }}"
