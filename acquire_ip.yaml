@@ -29,13 +29,13 @@
         status_code: 200
         url: "{{ manageiq.api_url }}/api/provision_requests/{{ miq_provision_request_id }}/request_tasks/{{ miq_provision_id }}"
         validate_certs: false
+      register: ip_addr
     - name: "Set Attributes"
       manageiq_automate: 
         set_state_var: 
           attribute: ip_addr
           value: "{{ ip_addr }}"
-        workspace: "{{ workspace }}"
-      register: ip_addr
+        workspace: "{{ workspace }}"     
     - debug: msg="ip_addr:{{ ip_addr }}"
   vars: 
     - netmask: "255.255.255.0"
