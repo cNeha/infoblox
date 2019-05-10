@@ -2,6 +2,8 @@
 - name: Nios_Host_Record
   hosts: localhost
   connection: local
+  roles:
+    - syncrou.manageiq-automate
   vars_files: /vars/host.yaml
   tasks:
   - name: "Get Attributes"
