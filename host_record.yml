@@ -4,19 +4,18 @@
   connection: local
   vars_files: /vars/host.yaml
   tasks:
-  - name: "Get $evm.root['ip_addr']"
+  - name: "Get Attributes"
     manageiq_automate:
       workspace: "{{ workspace }}"
-      get_attribute:
-        object: "root"
-        attribute: "ip_addr"
-    register: vm_name 
+      get_state_var:
+        attribute: ip_addr
+    register: ip_addr
   - name: Create Nios Host_Record
     nios_host_record:
-      name: new_host.ansible.com
+      name: neha-host.ansible.com
       ipv4:
       - address: "{{ ip_addr }}"
       state: present
-      comment: test comment
+      comment: ip address added
       provider: "{{ nios_provider }}"                                 
     register: host_created
