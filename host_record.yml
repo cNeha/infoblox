@@ -13,12 +13,12 @@
         attribute: ip_addr
     register: ip_addr
   - debug:
-      msg: "First item: {{ ip_addr['value'] }}"
+      msg: "First item: {{ ip_addr['value'][0] }}"
   - name: Create Nios Host_Record
     nios_host_record:
       name: neha-host.ansible.com
       ipv4:
-      - address: "{{ ip_addr }}"
+      - address: "{{ ip_addr['value'][0] }}"
       state: present
       comment: ip address added
       provider: "{{ nios_provider }}"                                 
