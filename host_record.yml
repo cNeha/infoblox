@@ -13,7 +13,7 @@
         attribute: ip_addr
     register: ip_addr
   - debug:
-    msg: "First item: {{ ip_addr | first }}"
+      msg: "First item: {{ ip_addr | first }}"
   - name: Create Nios Host_Record
     nios_host_record:
       name: neha-host.ansible.com
