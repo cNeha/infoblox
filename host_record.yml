@@ -16,7 +16,7 @@
       msg: "First item: {{ ip_addr['value'][0] }}"
   - name: Create Nios Host_Record
     nios_host_record:
-      name: neha-host.ansible.com
+      name: neha-host.ibcfan.com
       ipv4:
       - address: "{{ ip_addr['value'][0] }}"
       state: present
