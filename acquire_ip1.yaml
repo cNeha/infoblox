@@ -1,6 +1,5 @@
 --- 
-- name: Acquire IP
-  hosts: localhost
+- hosts: localhost
   connection: local
   vars_files: /vars/host.yaml
 - gather_facts: false
