@@ -1,0 +1,46 @@
+--- 
+- hosts: localhost
+  connection: local
+  vars_files: /vars/host.yaml
+- gather_facts: false
+  roles: 
+    - syncrou.manageiq-automate
+  tasks: 
+   - name: Get Next Available IP
+     set_fact:
+       ipaddr: "{{ lookup('nios_next_ip', "{{ cidr }}", provider=nios_provider) }}"
+     register: result
+   - name: print result
+     debug: 
+       msg: "{{ result.ansible_facts.ipaddr }}" 
+
+    - debug: 
+        msg: "{{ result.ansible_facts.ipaddr }}"
+    - debug: 
+        var: miq_provision_id
+    - debug: 
+        var: miq_provision_request_id
+    - name: "update task with new IP and hostname information"
+      uri: 
+        body: 
+          action: edit
+          resource: 
+            options: 
+              addr_mode: static
+              ip_addr: "{{ result.ansible_facts.ipaddr }}"
+              subnet_mask: "{{ netmask }}"
+        body_format: json
+        headers: 
+          X-Auth-Token: "{{ manageiq.api_token }}"
+        method: POST
+        status_code: 200
+        url: "{{ manageiq.api_url }}/api/provision_requests/{{ miq_provision_request_id }}/request_tasks/{{ miq_provision_id }}"
+        validate_certs: false
+    - name: "Set Attributes"
+      manageiq_automate: 
+        set_state_var: 
+          attribute: ip_addr
+          value: "{{ result.ansible_facts.ipaddr }}"
+        workspace: "{{ workspace }}"     
+  vars: 
+    - netmask: "255.255.255.0"
