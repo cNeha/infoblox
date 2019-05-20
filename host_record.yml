@@ -14,11 +14,11 @@
     register: ip_addr
   - debug:
       msg: "First item: {{ ip_addr['value'][0] }}"
-  - name: Create Nios Host_Record
-    debug:
+  - debug:
       var: hostname
+  - name: Create NIOS record
     nios_host_record:
-      name: "{{ hostname }}"
+      name: "{{ hostname }}" 
       ipv4:
       - address: "{{ ip_addr['value'][0] }}"
       state: present
