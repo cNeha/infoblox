@@ -9,6 +9,7 @@
   tasks:
   - debug:
       var: cidr
+    register: cidr
   - name: Get Next Available IP
     set_fact:
       ipaddr: "{{ lookup('nios_next_ip', cidr , provider=nios_provider) }}"
