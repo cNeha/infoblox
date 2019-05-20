@@ -12,7 +12,7 @@
     register: cidr
   - name: Get Next Available IP
     set_fact:
-      ipaddr: "{{ lookup('nios_next_ip', '{{ cidr }}' , provider=nios_provider) }}"
+      ipaddr: "{{ lookup('nios_next_ip', cidr[0] , provider=nios_provider) }}"
     register: result
   - name: print result
     debug: 
