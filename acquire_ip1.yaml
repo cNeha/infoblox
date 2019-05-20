@@ -2,8 +2,7 @@
 - hosts: localhost
   connection: local
   vars_files: /vars/host.yaml
-- gather_facts: false
-  hosts: localhost
+  gather_facts: false
   roles: 
     - syncrou.manageiq-automate
   tasks:
@@ -12,7 +11,7 @@
     register: cidr
   - name: Get Next Available IP
     set_fact:
-      ipaddr: "{{ lookup('nios_next_ip', cidr[0] , provider=nios_provider) }}"
+      ipaddr: "{{ lookup('nios_next_ip', cidr , provider=nios_provider) }}"
     register: result
   - name: print result
     debug: 
