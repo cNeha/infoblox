@@ -17,7 +17,7 @@
     register: result
   - name: print result
     debug: 
-      msg: "{{ result.ansible_facts.ipaddr }}" 
+      msg: "{{ result }}" 
   - debug: 
       var: miq_provision_id
   - debug: 
