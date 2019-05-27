@@ -20,6 +20,7 @@
               ip_addr: 10.74.120.121
               subnet_mask: "{{ netmask }}"
               host_name: test-dns.example.com
+              hostname: test-dns.example.com
         body_format: json
         headers: 
           X-Auth-Token: "{{ manageiq.api_token }}"
