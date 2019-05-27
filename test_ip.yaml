@@ -1,0 +1,37 @@
+--- 
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  hosts: localhost
+  roles: 
+    - syncrou.manageiq-automate
+  tasks:
+    - debug: 
+        var: miq_provision_id
+    - debug: 
+        var: miq_provision_request_id
+    - name: "update task with new IP and hostname information"
+      uri: 
+        body: 
+          action: edit
+          resource: 
+            options: 
+              addr_mode: static
+              ip_addr: 10.74.120.121
+              subnet_mask: 255.255.255.0
+              host_name: test-dns.example.com
+        body_format: json
+        headers: 
+          X-Auth-Token: "{{ manageiq.api_token }}"
+        method: POST
+        status_code: 200
+        url: "{{ manageiq.api_url }}/api/provision_requests/{{ miq_provision_request_id }}/request_tasks/{{ miq_provision_id }}"
+        validate_certs: false
+    - name: "Set Attributes"
+      manageiq_automate: 
+        set_state_var: 
+          attribute: ip_addr
+          value: "{{ result.ansible_facts.ipaddr }}"
+        workspace: "{{ workspace }}"     
+  vars: 
+    - netmask: "255.255.255.0"
