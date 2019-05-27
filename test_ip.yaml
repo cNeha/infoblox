@@ -18,7 +18,7 @@
             options: 
               addr_mode: static
               ip_addr: 10.74.120.121
-              subnet_mask: 255.255.255.0
+              subnet_mask: "{{ netmask }}"
               host_name: test-dns.example.com
         body_format: json
         headers: 
@@ -27,11 +27,6 @@
         status_code: 200
         url: "{{ manageiq.api_url }}/api/provision_requests/{{ miq_provision_request_id }}/request_tasks/{{ miq_provision_id }}"
         validate_certs: false
-    - name: "Set Attributes"
-      manageiq_automate: 
-        set_state_var: 
-          attribute: ip_addr
-          value: "{{ result.ansible_facts.ipaddr }}"
-        workspace: "{{ workspace }}"     
+    
   vars: 
     - netmask: "255.255.255.0"
