@@ -19,8 +19,7 @@
               addr_mode: static
               ip_addr: 10.74.120.121
               subnet_mask: "{{ netmask }}"
-              host_name: test-dns
-              hostname: test-dns
+              vm_target_hostname: test-dns
         body_format: json
         headers: 
           X-Auth-Token: "{{ manageiq.api_token }}"
