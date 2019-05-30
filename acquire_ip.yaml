@@ -31,7 +31,7 @@
             addr_mode: static
             ip_addr: "{{ result.ansible_facts.ipaddr }}"
             subnet_mask: "{{ netmask }}"
-            host_name: "{{ hostname }}"
+            vm_target_hostname: "{{ hostname }}"
       body_format: json
       headers: 
         X-Auth-Token: "{{ manageiq.api_token }}"
