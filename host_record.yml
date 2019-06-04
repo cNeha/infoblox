@@ -16,9 +16,11 @@
       msg: "First item: {{ ip_addr['value'][0] }}"
   - debug:
       var: hostname
+  - debug:
+      var: zone
   - name: Create NIOS record
     nios_host_record:
-      name: "{{ hostname }}" 
+      name: "{{ hostname }}"."{{ zone }}"
       ipv4:
       - address: "{{ ip_addr['value'][0] }}"
       state: present
