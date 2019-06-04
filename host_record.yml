@@ -20,7 +20,7 @@
       var: zone
   - name: Create NIOS record
     nios_host_record:
-      name: "{{ hostname }}"."{{ zone }}"
+      name: "{{ hostname }}.{{ zone }}"
       ipv4:
       - address: "{{ ip_addr['value'][0] }}"
       state: present
