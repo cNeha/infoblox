@@ -13,6 +13,8 @@
       var: hostname
   - debug:
       var: gateway
+  - debug:
+      var: netmask
   - name: Get Next Available IP
     set_fact:
       ipaddr: "{{ lookup('nios_next_ip', cidr , provider=nios_provider) }}"
@@ -48,5 +50,3 @@
         attribute: ip_addr
         value: "{{ result.ansible_facts.ipaddr }}"
       workspace: "{{ workspace }}"     
-  vars: 
-    - netmask: "255.255.255.0"
