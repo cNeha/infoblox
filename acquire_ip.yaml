@@ -11,6 +11,8 @@
     register: cidr
   - debug:
       var: hostname
+  - debug:
+      var: gateway
   - name: Get Next Available IP
     set_fact:
       ipaddr: "{{ lookup('nios_next_ip', cidr , provider=nios_provider) }}"
@@ -31,6 +33,7 @@
             addr_mode: static
             ip_addr: "{{ result.ansible_facts.ipaddr }}"
             subnet_mask: "{{ netmask }}"
+            gateway: "{{ gateway }}"
             vm_target_hostname: "{{ hostname }}"
       body_format: json
       headers: 
